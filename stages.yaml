@@ -1,0 +1,50 @@
+# Stages of notebooks/D1_reproduction.ipynb, in notebook order.
+# build_notebook.py joins scripts/cells/overview.py, each module below and scripts/cells/references.py.
+# caches: globs in results/cache; results: globs in results; figures: globs in results/figures;
+# summary_key: key of the stage in results/summary.json; expected_prefix: path prefix of its values
+# in expected/paper_values.json. scripts/move_stage.py moves one stage with these files.
+- id: 0
+  title_ja: 準備
+  module: scripts/cells/stage_0.py
+  questions: []
+  caches: []
+  results: []
+  figures: []
+  summary_key: null
+  expected_prefix: null
+- id: 1
+  title_ja: データの中身と、使う対局
+  module: scripts/cells/stage_1.py
+  questions: []
+  caches: []
+  results: []
+  figures: []
+  summary_key: null
+  expected_prefix: null
+- id: 2
+  title_ja: 逆U字の検定
+  module: scripts/cells/stage_2.py
+  questions: [Q2a, Q2b, Q2c, Q2d, Q2e]
+  caches: ["binned_*", "panel_describe*", "panel_horizons*", "panel_n_session_ends_7d*", "panel_two_lines_*"]
+  results: [return_by_es_bin.csv, panel_horizons.csv, panel_two_lines.csv]
+  figures: [d1_horizons.png, d1_return_curve.png, d1_return_raw.png]
+  summary_key: panel
+  expected_prefix: [panel.describe, panel.n_session_ends_, panel.horizons, panel.two_lines, panel.gain_beginner_to_peak, panel.any_bot_curvature_share]
+- id: 3
+  title_ja: 左右差：互角から同じだけ離れたときの違い
+  module: scripts/cells/stage_3.py
+  questions: [Q3b]
+  caches: [panel_flexible.json, "panel_flexible_*_*"]
+  results: [panel_flexible.csv, "shape_*.csv"]
+  figures: [d1_binscatter.png, d1_flexible_all.png, d1_binscatter_models.png, d1_mirror.png]
+  summary_key: shape
+  expected_prefix: [shape., panel.flexible]
+- id: 4
+  title_ja: 論文のすべての数値の照合
+  module: scripts/cells/stage_4.py
+  questions: []
+  caches: []
+  results: [summary.json, comparison.csv]
+  figures: []
+  summary_key: null
+  expected_prefix: null
